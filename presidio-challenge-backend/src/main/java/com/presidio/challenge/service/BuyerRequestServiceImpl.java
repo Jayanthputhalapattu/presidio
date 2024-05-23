@@ -43,7 +43,7 @@ public class BuyerRequestServiceImpl implements BuyerRequestService {
 		List<UserEntity> users = new ArrayList();
 		
 		users = buyerReqs.stream().map(p->{
-			Optional< UserEntity> user = userRepository.findById(p.getId());
+			Optional< UserEntity> user = userRepository.findById(p.getBuyer().getId());
 
 			return user.get();
 		}).collect(Collectors.toList());

@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
 		
 		try {
 			UserEntity user = modelMapper.map(userDTO,UserEntity.class);
+			
 			userRepo.save(user);
 			
 			responseDto.setMessage("User Registration Successfull");

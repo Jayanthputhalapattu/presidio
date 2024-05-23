@@ -3,10 +3,14 @@ package com.presidio.challenge.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
 
+import com.presidio.challenge.dto.PropertyDto;
 import com.presidio.challenge.dto.ResponseDTO;
 import com.presidio.challenge.entity.Property;
 import com.presidio.challenge.entity.UserEntity;
@@ -20,6 +24,8 @@ public class PropertyServiceImpl implements PropertyService{
 	private PropertyRepo propertyRepo;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ModelMapper modelmapper;
 	@Override
 	public ResponseDTO addProperty(Property property) {
 		// TODO Auto-generated method stub
@@ -36,7 +42,7 @@ public class PropertyServiceImpl implements PropertyService{
 		return responseDTO;
 	}
 	@Override
-	public List<Property> getAllProperties()
+	public List<PropertyDto> getAllProperties()
 	{
 		List<Property> allProperties = propertyRepo.findAll();
 		
@@ -44,7 +50,9 @@ public class PropertyServiceImpl implements PropertyService{
 		{
 			return new ArrayList<>();
 		}
-		return allProperties;
+		List<PropertyDto> propertyDtos = allProperties.stream().map(p->modelmapper.map(p, PropertyDto.class)).collect(Collectors.toList());
+	
+		return propertyDtos;
 		
 	}
 	

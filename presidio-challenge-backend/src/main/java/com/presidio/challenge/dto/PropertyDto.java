@@ -2,29 +2,24 @@ package com.presidio.challenge.dto;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
 public class PropertyDto {
 	private Long id;
-	
-	private Long userId;
 	private String place;
 	private int noOfBedRooms;
 	private int noOfbathRooms;
-	private List<String> interest;
+	private String nearByHospital;
+	private String nearByCollege;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+	
 	public String getPlace() {
 		return place;
 	}
@@ -43,12 +38,19 @@ public class PropertyDto {
 	public void setNoOfbathRooms(int noOfbathRooms) {
 		this.noOfbathRooms = noOfbathRooms;
 	}
-	public List<String> getInterest() {
-		return interest;
+	public String getNearByHospital() {
+		return nearByHospital;
 	}
-	public void setInterest(List<String> interest) {
-		this.interest = interest;
+	public void setNearByHospital(String nearByHospital) {
+		this.nearByHospital = nearByHospital;
 	}
+	public String getNearByCollege() {
+		return nearByCollege;
+	}
+	public void setNearByCollege(String nearByCollege) {
+		this.nearByCollege = nearByCollege;
+	}
+	
 	
 	
 
