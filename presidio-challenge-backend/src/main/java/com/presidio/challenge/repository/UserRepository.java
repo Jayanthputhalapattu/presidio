@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.presidio.challenge.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, String>{
+public interface UserRepository extends JpaRepository<UserEntity, Long>{
 		
 	public Optional<UserEntity> findByEmailAndPassword(String email,String password);
 }

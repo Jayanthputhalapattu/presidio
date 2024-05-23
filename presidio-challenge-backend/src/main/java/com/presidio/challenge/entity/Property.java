@@ -10,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +27,10 @@ public class Property {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@OneToMany(mappedBy = "property",cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn
+	private UserEntity seller;
+	@OneToMany(mappedBy = "property",cascade = CascadeType.ALL)
 	private List<BuyerRequest> buyerRequests;
 	@Column(name="place")
 	private String place;
@@ -37,6 +42,21 @@ public class Property {
 	private String nearByHospital;
 	@Column(name="nearby_college")
 	private String nearByCollege;
+	
+	private long sellId;
+	
+	public UserEntity getSeller() {
+		return seller;
+	}
+	public void setSeller(UserEntity seller) {
+		this.seller = seller;
+	}
+	public long getSellId() {
+		return sellId;
+	}
+	public void setSellId(long sellId) {
+		this.sellId = sellId;
+	}
 	public long getId() {
 		return id;
 	}
